@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 
 const Game = () => {
+  const [currPerSec, setcurrPerSec] = useState(0);
   const [buidlingPrice, setBuildingPrice] = useState(20);
   const [score, setScore] = useState(0);
   const [currency, setCurrency] = useState(0);
@@ -11,20 +12,28 @@ const Game = () => {
     setScore(score + clickScore);
     setCurrency(currency + clickScore);
   }
-  function getBuilding() {
+  function getBuildingForSec() {
+    setCurrency(currency - buidlingPrice);
+    setBuildings(buildings + 1);
+    setBuildingPrice(buidlingPrice * 2);
+    setcurrPerSec(currPerSec + 1);
+    clickPerSec();
+  }
+
+  function getBuildingForClick() {
     setClickScore(clickScore * 2);
     setCurrency(currency - buidlingPrice);
     setBuildings(buildings + 1);
     setBuildingPrice(buidlingPrice * 2);
-    clickPerSec();
   }
 
   function clickPerSec() {
     setInterval(() => {
       setCurrency((currency) => currency + 1);
+      setScore((score) => score + 1);
     }, 1000);
     console.log("rendered");
-    // return clearInterval(id);
+    // return clearInterval(id);s
   }
   //   useEffect(() => {
   //     clickPerSec();
@@ -37,12 +46,19 @@ const Game = () => {
       <h4>{currency}</h4>
       <h1>{`${score} KD`}</h1>
       <p>{`score per click: ${clickScore}`}</p>
+      <p>{`currency per second: ${currPerSec}`}</p>
       <button onClick={add}>CLick Me!</button>
       {currency >= buidlingPrice ? (
-        <button
-          className="btn-2"
-          onClick={getBuilding}
-        >{`Buy a building upgrade for ${buidlingPrice}!`}</button>
+        <>
+          <button
+            className="btn-2"
+            onClick={getBuildingForSec}
+          >{`Buy a building upgrade for click per second ${buidlingPrice}!`}</button>
+          <button
+            className="btn-3"
+            onClick={getBuildingForClick}
+          >{`Buy a building upgrade for currency per click ${buidlingPrice}!`}</button>
+        </>
       ) : (
         ""
       )}
