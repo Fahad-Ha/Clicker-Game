@@ -1,5 +1,5 @@
 body {
-  background: #f5f5f5;
+  background-color: #0b2434;
 }
 
 .App {
@@ -8,30 +8,64 @@ body {
   align-items: center;
   text-align: center;
   margin: 10vh auto;
+  font-family: "Karla", sans-serif;
 }
 
 button {
-  background: #5035ff;
-  box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
-  border-radius: 100px;
-  color: white;
-  margin: 10px 0 10px 0;
-  height: 100px;
+  background-color: #5035ff;
+  border-radius: 15px;
+  color: #f5f5f5;
+  margin: 20px 0 10px 0;
+  height: 70px;
+  width: 140px;
   font-size: 24px;
+  font-family: "Karla", sans-serif;
+  font-weight: 600;
+  box-shadow: 0 7px #999;
+}
+
+button:hover {
+  cursor: pointer;
+}
+button:active {
+  background-color: #3c27ca;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.btn-2:active,
+.btn-3:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .btn-2,
 .btn-3 {
   font-size: 16px;
   height: 50px;
-  border-radius: 100px;
+  width: auto;
+  border-radius: 15px;
+  background: #59e391;
+  color: #2b283a;
+}
+
+.btn-2 {
+  margin: 40px 0 10px 0;
 }
 
 .card {
-  background-color: #ffffff;
+  background-color: #f5f5f5;
   width: 50vh;
   height: 65vh;
   box-shadow: 0px 3.2px 7.68px rgba(0, 0, 0, 0.18);
   border-radius: 8.81277px;
   padding: 60px 0;
+  position: relative;
+}
+
+h4 {
+  align-self: flex-end;
+  position: absolute;
+  top: 2vh;
+  right: 5vh;
 }

@@ -32,8 +32,6 @@ const Game = () => {
       setCurrency((currency) => currency + 1);
       setScore((score) => score + 1);
     }, 1000);
-    console.log("rendered");
-    // return clearInterval(id);s
   }
   //   useEffect(() => {
   //     clickPerSec();
@@ -43,21 +41,21 @@ const Game = () => {
   return (
     <div className="card">
       <h3>{`Buildings: ${buildings}`}</h3>
-      <h4>{currency}</h4>
-      <h1>{`${score} KD`}</h1>
-      <p>{`score per click: ${clickScore}`}</p>
-      <p>{`currency per second: ${currPerSec}`}</p>
+      <h4>{`${currency} KD`}</h4>
+      <h1>{score}</h1>
+      <p>{`Score per click: ${clickScore}`}</p>
+      <p>{`Currency per second: ${currPerSec}`}</p>
       <button onClick={add}>CLick Me!</button>
       {currency >= buidlingPrice ? (
         <>
           <button
             className="btn-2"
             onClick={getBuildingForSec}
-          >{`Buy a building upgrade for click per second ${buidlingPrice}!`}</button>
+          >{`Buy a building +click per second `}</button>
           <button
             className="btn-3"
             onClick={getBuildingForClick}
-          >{`Buy a building upgrade for currency per click ${buidlingPrice}!`}</button>
+          >{`Buy a building +currency per click `}</button>
         </>
       ) : (
         ""
