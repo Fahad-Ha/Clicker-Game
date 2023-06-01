@@ -32,6 +32,8 @@ const Game = () => {
       setCurrency((currency) => currency + 1);
       setScore((score) => score + 1);
     }, 1000);
+
+    clearInterval(interval);
   }
   //   useEffect(() => {
   //     clickPerSec();
