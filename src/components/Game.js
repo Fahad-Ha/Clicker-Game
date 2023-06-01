@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 
 const Game = () => {
@@ -19,7 +19,7 @@ const Game = () => {
     setBuildings(buildings + 1);
     setBuildingPriceForSec(buidlingPriceForSec * 2);
     setcurrPerSec(currPerSec + 1);
-    setIntervil(clickPerSec(intervil != 0 ? intervil : ""));
+    setIntervil(clickPerSec(intervil !== 0 ? intervil : ""));
   }
 
   function getBuildingForClick() {
@@ -51,7 +51,7 @@ const Game = () => {
       <h4>{`${currency} KD`}</h4>
       <h1>{score}</h1>
       <p>{`Score per click: ${clickScore}`}</p>
-      <p>{`Currency per second: ${currPerSec != 1 ? currPerSec - 1 : 0}`}</p>
+      <p>{`Currency per second: ${currPerSec !== 1 ? currPerSec - 1 : 0}`}</p>
       <button onClick={add}>CLick Me!</button>
       {currency >= buidlingPriceForSec ? (
         <button
