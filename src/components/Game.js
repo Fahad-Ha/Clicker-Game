@@ -12,7 +12,7 @@ const Game = () => {
   // const [intervil, setIntervil] = useState(0);
 
   const [currentValue, setCurrentValue] = useState({
-    currentPerSec: 1,
+    currPerSec: 1,
     buidlingPriceForSec: 20,
     buidlingPriceForClick: 20,
     score: 0,
@@ -31,15 +31,20 @@ const Game = () => {
     // setScore(score + clickScore);
     // setCurrency(currency + clickScore);
   }
+
   function getBuildingForSec() {
     setCurrentValue(
-      (prev) => ({
-        ...prev,
-        currency: prev.currency - prev.buidlingPriceForSec,
-        buildings: prev.buildings + 1,
-        buidlingPriceForSec: prev.buidlingPriceForSec * 2,
-        intervil: clickPerSec(prev.intervil != 0 ? prev.intervil : 0),
-      })
+      (prev) => {
+        clearInterval(prev.intervil);
+        return {
+          ...prev,
+          currency: prev.currency - prev.buidlingPriceForSec,
+          buildings: prev.buildings + 1,
+          buidlingPriceForSec: prev.buidlingPriceForSec * 2,
+          intervil: clickPerSec(),
+          currPerSec: prev.currPerSec * 2,
+        };
+      }
       // setCurrency(currency - buidlingPriceForSec);
       // setBuildings(buildings + 1);
       // setBuildingPriceForSec(buidlingPriceForSec * 2);
@@ -62,21 +67,22 @@ const Game = () => {
       // setBuildingPriceForClick(buidlingPriceForClick * 2);
     );
   }
-  function clickPerSec(intervil) {
-    clearInterval(intervil);
-    setCurrentValue((prev) => ({ ...prev, currPerSec: prev.currPerSec * 2 }));
-
+  function clickPerSec() {
     const intervil_ = setInterval(() => {
-      setCurrentValue((prev) => ({
-        ...prev,
-        currency: prev.currency + prev.currPerSec,
-        score: prev.score + prev.currPerSec,
-      }));
-      console.log(currentValue.currPerSec);
-      // setCurrency((currency) => currency + currPerSec);
-      // setScore((score) => score + currPerSec);
-      // console.log(currPerSec);
+      setCurrentValue((prev) => {
+        let amount = prev.currPerSec / 2;
+        console.log(amount);
+        clearInterval(prev.intervil);
+        return {
+          ...prev,
+          currency: prev.currency + amount,
+          score: prev.score + amount,
+        };
+      });
     }, 1000);
+
+    // setCurrentValue((prev) => ({ ...prev, currPerSec: prev.currPerSec * 2 }));
+
     return intervil_;
   }
   // let clickPerSec = () => {};
