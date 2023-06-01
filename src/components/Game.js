@@ -3,7 +3,8 @@ import { useState } from "react";
 
 const Game = () => {
   const [currPerSec, setcurrPerSec] = useState(1);
-  const [buidlingPrice, setBuildingPrice] = useState(20);
+  const [buidlingPriceForSec, setBuildingPriceForSec] = useState(20);
+  const [buidlingPriceForClick, setBuildingPriceForClick] = useState(20);
   const [score, setScore] = useState(0);
   const [currency, setCurrency] = useState(0);
   const [buildings, setBuildings] = useState(0);
@@ -14,18 +15,18 @@ const Game = () => {
     setCurrency(currency + clickScore);
   }
   function getBuildingForSec() {
-    setCurrency(currency - buidlingPrice);
+    setCurrency(currency - buidlingPriceForSec);
     setBuildings(buildings + 1);
-    setBuildingPrice(buidlingPrice * 2);
+    setBuildingPriceForSec(buidlingPriceForSec * 2);
     setcurrPerSec(currPerSec + 1);
     setIntervil(clickPerSec(intervil != 0 ? intervil : ""));
   }
 
   function getBuildingForClick() {
     setClickScore(clickScore * 2);
-    setCurrency(currency - buidlingPrice);
+    setCurrency(currency - buidlingPriceForClick);
     setBuildings(buildings + 1);
-    setBuildingPrice(buidlingPrice * 2);
+    setBuildingPriceForClick(buidlingPriceForClick * 2);
   }
 
   function clickPerSec(intervil) {
@@ -52,17 +53,19 @@ const Game = () => {
       <p>{`Score per click: ${clickScore}`}</p>
       <p>{`Currency per second: ${currPerSec != 1 ? currPerSec - 1 : 0}`}</p>
       <button onClick={add}>CLick Me!</button>
-      {currency >= buidlingPrice ? (
-        <>
-          <button
-            className="btn-2"
-            onClick={getBuildingForSec}
-          >{`Buy a building +click per second `}</button>
-          <button
-            className="btn-3"
-            onClick={getBuildingForClick}
-          >{`Buy a building +currency per click `}</button>
-        </>
+      {currency >= buidlingPriceForSec ? (
+        <button
+          className="btn-2"
+          onClick={getBuildingForSec}
+        >{`Buy a building +click per second for ${buidlingPriceForSec}`}</button>
+      ) : (
+        ""
+      )}
+      {currency >= buidlingPriceForClick ? (
+        <button
+          className="btn-3"
+          onClick={getBuildingForClick}
+        >{`Buy a building +currency per click for ${buidlingPriceForClick}`}</button>
       ) : (
         ""
       )}
