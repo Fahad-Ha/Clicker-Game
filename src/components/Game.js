@@ -18,7 +18,6 @@ const Game = () => {
     setCurrency(currency - buidlingPriceForSec);
     setBuildings(buildings + 1);
     setBuildingPriceForSec(buidlingPriceForSec * 2);
-    setcurrPerSec(currPerSec + 1);
     setIntervil(clickPerSec(intervil !== 0 ? intervil : ""));
   }
 
@@ -31,27 +30,28 @@ const Game = () => {
 
   function clickPerSec(intervil) {
     clearInterval(intervil);
+    setcurrPerSec(currPerSec * 2);
 
     const intervil_ = setInterval(() => {
       setCurrency((currency) => currency + currPerSec);
       setScore((score) => score + currPerSec);
       console.log(currPerSec);
     }, 1000);
-
     return intervil_;
   }
   //   useEffect(() => {
   //     clickPerSec();
   //     console.log("test");
   //   }, []);
-
+  // Why here it will be step ahead ? instead of inside of setInterval function ?
+  console.log(currPerSec);
   return (
     <div className="card">
       <h3>{`Buildings: ${buildings}`}</h3>
       <h4>{`${currency} KD`}</h4>
       <h1>{score}</h1>
       <p>{`Score per click: ${clickScore}`}</p>
-      <p>{`Currency per second: ${currPerSec !== 1 ? currPerSec - 1 : 0}`}</p>
+      <p>{`Currency per second: ${currPerSec === 1 ? "0" : currPerSec / 2}`}</p>
       <button onClick={add}>CLick Me!</button>
       {currency >= buidlingPriceForSec ? (
         <button
