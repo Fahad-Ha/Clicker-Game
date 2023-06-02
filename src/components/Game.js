@@ -57,7 +57,7 @@ const Game = () => {
         <button
           className="btn-2"
           onClick={getBuildingForSec}
-        >{`Buy a building +click per second for ${buidlingPriceForSec}`}</button>
+        >{`Buy a building +click per second for ${buidlingPriceForSec} KD`}</button>
       ) : (
         ""
       )}
@@ -65,7 +65,7 @@ const Game = () => {
         <button
           className="btn-3"
           onClick={getBuildingForClick}
-        >{`Buy a building +currency per click for ${buidlingPriceForClick}`}</button>
+        >{`Buy a building +currency per click for ${buidlingPriceForClick} KD`}</button>
       ) : (
         ""
       )}
